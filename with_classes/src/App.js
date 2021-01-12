@@ -4,8 +4,8 @@ import TodoList from './components/TodoList';
 class App extends PureComponent {
     state = {
         list: [
-        {text: 'first task', index: 0},
-        {text: 'second task', index: 1}
+        {text: 'first task', index: 0, isCompleted: false},
+        {text: 'second task', index: 1, isCompleted: false}
     ]}
 
     inputRef = React.createRef()
@@ -18,16 +18,21 @@ class App extends PureComponent {
             this.state.list.forEach(item => item.index++)
 
             this.setState({
-                list: [{text: input.value, index: 0}, ...this.state.list,]
+                list: [{text: input.value, index: 0, isCompleted: false}, ...this.state.list,]
             })
             input.value = ''
         }
     }
 
-    onDelete = (index) => {
-        this.state.list = this.state.list.filter(elem => elem.index !== index)
-        this.state.list.forEach(item => item.index = this.state.list.indexOf(item))
+    checkboxHandler = (index) => {
+        this.state.list[index].isCompleted = !this.state.list[index].isCompleted
         this.setState({list: [...this.state.list]})
+    }
+
+    onDelete = (index) => {
+        const newList = this.state.list.filter(elem => elem.index !== index)
+        newList.forEach(item => item.index = newList.indexOf(item))
+        this.setState({list: [...newList]})
     }
 
     render() {
@@ -39,7 +44,7 @@ class App extends PureComponent {
                     <span className='bar'></span>
                 </form>
 
-                <TodoList list = {list} onDelete = {this.onDelete} />
+                <TodoList list = {list} onDelete = {this.onDelete} checkboxHandler = {this.checkboxHandler} />
             </>
         )
     }

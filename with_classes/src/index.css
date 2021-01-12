@@ -107,6 +107,6 @@ i {
   font-size: 20px;
 }
 
-input[type=checkbox]:checked ~ .todo-text {
+.completed ~ .todo-text {
   text-decoration: line-through;
 }

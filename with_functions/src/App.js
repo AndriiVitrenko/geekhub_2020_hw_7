@@ -6,8 +6,8 @@ function App() {
   const inputRef = useRef()
 
   let [todos, setTodos] = useState([
-    {text: '1', index: 0},
-    {text: '2', index: 1}
+    {text: '1', index: 0, isCompleted: false},
+    {text: '2', index: 1, isCompleted: false}
   ])
 
   const addTodo = (e) => {
@@ -17,7 +17,7 @@ function App() {
         if (input.value.trim()) {
             todos.forEach(item => item.index++)
 
-            setTodos([{text: input.value, index: 0}, ...todos,])
+            setTodos([{text: input.value, index: 0, isCompleted: false}, ...todos,])
             input.value = ''
         }
   }
@@ -28,6 +28,11 @@ function App() {
         setTodos([...todos])
     }
 
+  const checkboxHandler = (index) => {
+    todos[index].isCompleted = !todos[index].isCompleted
+    setTodos([...todos])
+  }  
+
     return (
       <>
         <form onSubmit = {addTodo} >
@@ -35,7 +40,7 @@ function App() {
           <span className='bar'></span>
         </form>
 
-        <TodoList list = {todos} onDelete = {onDelete} />
+        <TodoList list = {todos} onDelete = {onDelete} checkboxHandler = {checkboxHandler} />
       </>
     );
 }

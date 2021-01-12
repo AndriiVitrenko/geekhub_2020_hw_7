@@ -4,7 +4,7 @@ export function TodoList(props) {
     return(
         <ul>
             {props.list.map((todo, i) => {
-                    return <TodoItem todo = {todo} key = {i} onDelete = {props.onDelete} /> 
+                    return <TodoItem todo = {todo} key = {i} onDelete = {props.onDelete} checkboxHandler = {props.checkboxHandler} /> 
                 })
             }
         </ul>
