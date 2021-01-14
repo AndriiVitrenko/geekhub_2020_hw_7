@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-class TodoItem extends Component {
+class TodoItem extends PureComponent {
     render() {
         const {text, index, isCompleted} = this.props.todo
         const onDelete = this.props.onDelete

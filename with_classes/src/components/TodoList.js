@@ -9,7 +9,7 @@ class TodoList extends PureComponent {
             <ul>
                 {
                     list.map((todo, i) => {
-                        return <TodoItem todo = {todo} key = {i} onDelete = {onDelete} checkboxHandler = {checkboxHandler} />
+                        return <TodoItem todo = {{...todo}} key = {i} onDelete = {onDelete} checkboxHandler = {checkboxHandler} />
                     })
                 }
             </ul>
