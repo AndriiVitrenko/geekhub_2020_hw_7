@@ -12,13 +12,12 @@ class TodoItem extends PureComponent {
 
 
         return(
-            <li>
+            <li className = {classes.join(' ')}>
                 <p>
                     <span className='index'>{index + 1}.</span> 
                     <input
                         type='checkbox'
                         checked = {isCompleted}
-                        className = {classes.join(' ')}
                         onChange = {() => {checkboxHandler(index)}}
                     /> 
                     <span className='todo-text'>{text}</span>
