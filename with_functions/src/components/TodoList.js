@@ -1,12 +1,15 @@
-import { TodoItem } from "./TodoItem"
+import { TodoItem } from "./TodoItem";
+import {useSelector} from 'react-redux';
 
-export function TodoList(props) {
+export function TodoList() {
+    const list = useSelector(state => state.list)
+
     return(
-        <ul>
-            {props.list.map((todo, i) => {
-                    return <TodoItem todo = {todo} key = {i} onDelete = {props.onDelete} checkboxHandler = {props.checkboxHandler} /> 
+        <ol>
+            {list.map((todo, i) => {
+                    return <TodoItem todo = {todo} key = {todo.id}/> 
                 })
             }
-        </ul>
+        </ol>
     )
 }
