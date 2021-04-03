@@ -1,11 +1,10 @@
-import { TodoList } from "./components/TodoList.js";
 import React from 'react';
-import { Header } from "./components/Header.js";
-import {store} from './store';
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux';
+import TodoList from './components/TodoList';
+import Header from './components/Header';
+import { store } from './store';
 
 function App() {
-
   return (
     <Provider store={store}>
       <Header />
