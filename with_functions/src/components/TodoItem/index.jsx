@@ -1,20 +1,18 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { changeTodoState, deleteTodo } from '../store';
 
-export default function TodoItem({ todo }) {
-  const { text, index, isCompleted } = todo;
-  const dispatch = useDispatch();
+export default function TodoItem({
+  text, index, isCompleted, removeTodo, changeState,
+}) {
   const onDeleteHandler = useCallback(
     () => {
-      dispatch(deleteTodo(index));
-    }, [dispatch, index],
+      removeTodo(index);
+    }, [index],
   );
 
   const onChangeHandler = useCallback(
     () => {
-      dispatch(changeTodoState(index));
-    }, [dispatch, index],
+      changeState(index);
+    }, [index],
   );
 
   return (

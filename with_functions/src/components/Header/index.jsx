@@ -1,10 +1,7 @@
 import React, { useRef, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTodo } from '../store';
 
-export default function Header() {
+export default function Header({ setTodo }) {
   const inputRef = useRef();
-  const dispatch = useDispatch();
   const onSubmitHandler = useCallback(
     (e) => {
       e.preventDefault();
@@ -12,11 +9,11 @@ export default function Header() {
       const input = inputRef.current;
 
       if (input.value.trim()) {
-        dispatch(addTodo(input.value.trim()));
+        setTodo(input.value.trim());
 
         input.value = '';
       }
-    }, [dispatch],
+    }, [],
   );
 
   return (

@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import { addTodo } from '../store/todoListSlice';
 
-class Header extends PureComponent {
+export default class Header extends PureComponent {
   inputRef = React.createRef();
 
   constructor(props) {
@@ -16,6 +14,7 @@ class Header extends PureComponent {
 
     if (input.value.trim()) {
       this.addTodo(input.value.trim());
+      input.value = '';
     }
   }
 
@@ -30,11 +29,3 @@ class Header extends PureComponent {
     );
   }
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  addTodo: (props) => {
-    dispatch(addTodo(props));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(Header);

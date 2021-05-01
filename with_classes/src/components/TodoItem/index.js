@@ -1,25 +1,23 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import { deleteItem, changeItemState } from '../store/todoListSlice';
 
-class TodoItem extends PureComponent {
+export default class TodoItem extends PureComponent {
   constructor(props) {
     super(props);
     this.deleteItem = props.deleteItem;
     this.changeItemState = props.changeItemState;
-    this.todo = props.todo;
+    this.index = props.index;
   }
 
   changeHandler = () => {
-    this.changeItemState(this.todo.index);
+    this.changeItemState(this.index);
   }
 
   deleteHandler = () => {
-    this.deleteItem(this.todo.index);
+    this.deleteItem(this.index);
   }
 
   render() {
-    const { text, index, isCompleted } = this.props.todo;
+    const { text, index, isCompleted } = this.props;
 
     return (
       <li className={isCompleted ? 'completed' : ''}>
@@ -42,10 +40,3 @@ class TodoItem extends PureComponent {
     );
   }
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  changeItemState: (props) => dispatch(changeItemState(props)),
-  deleteItem: (props) => dispatch(deleteItem(props)),
-});
-
-export default connect(null, mapDispatchToProps)(TodoItem);

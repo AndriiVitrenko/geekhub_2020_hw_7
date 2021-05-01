@@ -11,14 +11,14 @@ const todoListSlice = createSlice({
   reducers: {
     addTodo(state, action) {
       state.list = [{ text: action.payload, index: 0, isCompleted: false }, ...state.list];
-      state.list.forEach((item, i) => item.index = i);
+      state.list.forEach((item, i) => { item.index = i; });
     },
     changeItemState(state, action) {
       state.list[action.payload].isCompleted = !state.list[action.payload].isCompleted;
     },
     deleteItem(state, action) {
       state.list.splice(action.payload, 1);
-      state.list.forEach((item, i) => item.index = i);
+      state.list.forEach((item, i) => { item.index = i; });
     },
   },
 });
